@@ -15,19 +15,43 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1A2B19D4F2814118B849B2657890F5D4"
+        "MsmKey" = "8:_0429441005164397A271C4ABFE23ABDD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_26A9B296B02844AEAE79FE63AAA7751D"
+        "MsmKey" = "8:_0445897282914881A888119047B7B9A8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3141DE1C00A248889B31FC9204A899DB"
+        "MsmKey" = "8:_151EB4554BBC4A12B0A1F7D3B531A3D3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_173878EBA9EA4C35900EA65E112BBCE6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_20A03720E32D4244B17735A2E8C1007F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_44C98739CDD845AA8BF574253EA12631"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_47BAFBBC81A348839AAF4916436A264A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,55 +69,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6980E185E5CE43358019714DECC31D4D"
+        "MsmKey" = "8:_65A9CFC8464E4B7AB30A432113F8C20F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6FFEED701F40460B8437E2494D78AA82"
+        "MsmKey" = "8:_AE369BE95552451AB31C3345C1D5F0E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_815292D70E5E411391D90FA2877DED21"
+        "MsmKey" = "8:_C93F0BD59E3144B2BEF4F078BE2AE6EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8FE60E70DB54400197C20DDFF1A42CCC"
+        "MsmKey" = "8:_EAE0F77FAC764530B6CD1ED72CC7674F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B391CC1F89F04A5FBEC70D5D665AFA77"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6205496724049B1A8A99D1E743F1C8F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C19D9CBC81A141B3BB938C7FDC5CB18F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DE8EECBC2C4143BE8906471952646614"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EBD5718A41FD47AEBF4E3873E3A4FA69"
+        "MsmKey" = "8:_F67850FB7B2A4D1D9B172179209F4139"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -106,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FB589E87330538133A9F71058610223B"
+        "OwnerKey" = "8:_64D6062A606A4B95912E3C9CEFAD0751"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_64D6062A606A4B95912E3C9CEFAD0751"
+        "OwnerKey" = "8:_FB589E87330538133A9F71058610223B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -172,6 +172,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -202,7 +210,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1A2B19D4F2814118B849B2657890F5D4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0429441005164397A271C4ABFE23ABDD"
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListGroup.txt"
             "TargetName" = "8:ListGroup.txt"
@@ -222,10 +230,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26A9B296B02844AEAE79FE63AAA7751D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0445897282914881A888119047B7B9A8"
             {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListDuo8.txt"
-            "TargetName" = "8:ListDuo8.txt"
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo8.txt"
+            "TargetName" = "8:ListSolo8.txt"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
@@ -242,10 +250,90 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3141DE1C00A248889B31FC9204A899DB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_151EB4554BBC4A12B0A1F7D3B531A3D3"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP12.txt"
+            "TargetName" = "8:ListOP12.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_173878EBA9EA4C35900EA65E112BBCE6"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo12.txt"
+            "TargetName" = "8:ListSolo12.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20A03720E32D4244B17735A2E8C1007F"
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo13_15.txt"
             "TargetName" = "8:ListSolo13_15.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44C98739CDD845AA8BF574253EA12631"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP13_15.txt"
+            "TargetName" = "8:ListOP13_15.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47BAFBBC81A348839AAF4916436A264A"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP8.txt"
+            "TargetName" = "8:ListOP8.txt"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
@@ -282,10 +370,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6980E185E5CE43358019714DECC31D4D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_65A9CFC8464E4B7AB30A432113F8C20F"
             {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP8.txt"
-            "TargetName" = "8:ListOP8.txt"
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListDuo8.txt"
+            "TargetName" = "8:ListDuo8.txt"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
@@ -302,87 +390,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FFEED701F40460B8437E2494D78AA82"
-            {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP13_15.txt"
-            "TargetName" = "8:ListOP13_15.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_815292D70E5E411391D90FA2877DED21"
-            {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListCombi.txt"
-            "TargetName" = "8:ListCombi.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8FE60E70DB54400197C20DDFF1A42CCC"
-            {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo8.txt"
-            "TargetName" = "8:ListSolo8.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B391CC1F89F04A5FBEC70D5D665AFA77"
-            {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo12.txt"
-            "TargetName" = "8:ListSolo12.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6205496724049B1A8A99D1E743F1C8F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE369BE95552451AB31C3345C1D5F0E7"
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListDuo12.txt"
             "TargetName" = "8:ListDuo12.txt"
@@ -402,7 +410,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C19D9CBC81A141B3BB938C7FDC5CB18F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C93F0BD59E3144B2BEF4F078BE2AE6EA"
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListDuo13_15.txt"
             "TargetName" = "8:ListDuo13_15.txt"
@@ -422,10 +430,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE8EECBC2C4143BE8906471952646614"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EAE0F77FAC764530B6CD1ED72CC7674F"
             {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListTrophy.txt"
-            "TargetName" = "8:ListTrophy.txt"
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListCombi.txt"
+            "TargetName" = "8:ListCombi.txt"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
@@ -442,10 +450,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EBD5718A41FD47AEBF4E3873E3A4FA69"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F67850FB7B2A4D1D9B172179209F4139"
             {
-            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListOP12.txt"
-            "TargetName" = "8:ListOP12.txt"
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListTrophy.txt"
+            "TargetName" = "8:ListTrophy.txt"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
