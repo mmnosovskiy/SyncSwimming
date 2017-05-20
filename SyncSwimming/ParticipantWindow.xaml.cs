@@ -47,7 +47,7 @@ namespace SyncSwimming
             }
             else if (!int.TryParse(NewYear.Text, out year) || year < 1990 || year > 2015)
             {
-                MessageBox.Show("Невыерный год рождения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверный год рождения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {

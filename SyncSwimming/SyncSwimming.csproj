@@ -14,6 +14,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,6 +80,10 @@
     <Compile Include="DuoWindow.xaml.cs">
       <DependentUpon>DuoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs" />
+    <Compile Include="GroupWindow.xaml.cs">
+      <DependentUpon>GroupWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ParticipantWindow.xaml.cs">
       <DependentUpon>ParticipantWindow.xaml</DependentUpon>
     </Compile>
@@ -73,13 +92,24 @@
     <Compile Include="ScoresDuoWindow.xaml.cs">
       <DependentUpon>ScoresDuoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScoresGroupWindow.xaml.cs">
+      <DependentUpon>ScoresGroupWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScoresOPWindow.xaml.cs">
       <DependentUpon>ScoresOPWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScoresPPWindow.xaml.cs">
       <DependentUpon>ScoresPPWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScoresTrophyWindow.xaml.cs">
+      <DependentUpon>ScoresTrophyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trophy.cs" />
     <Page Include="DuoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,11 +133,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ScoresGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScoresOPWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScoresPPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScoresTrophyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +179,18 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

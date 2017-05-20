@@ -15,9 +15,9 @@ namespace SyncSwimming
         {
             Duo1 = p1;
             Duo2 = p2;
-            FIO = Duo1.FIO + ", " + Duo2.FIO;
-            Year = Duo1.Year + ", " + Duo2.Year;
-            Category = Duo1.Category + ", " + Duo2.Category;
+            FIO = Duo1.FIO + "\n" + Duo2.FIO;
+            Year = Duo1.Year + "\n" + Duo2.Year;
+            Category = Duo1.Category + "\n" + Duo2.Category;
             Team = Duo1.Team;
         }
         public string FIO { get; set; }
@@ -34,7 +34,7 @@ namespace SyncSwimming
                 double sum = 0;
                 foreach (Scores item in DuoScores)
                 {
-                    sum += item.ResultPP * item.Coef;
+                    sum += item.ResultPP;
                 }
                 return sum;
             }

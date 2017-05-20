@@ -23,9 +23,44 @@ namespace SyncSwimming
         public static ObservableCollection<Duo> listDuo8 = new ObservableCollection<Duo>();
         public static ObservableCollection<Duo> listDuo12 = new ObservableCollection<Duo>();
         public static ObservableCollection<Duo> listDuo13_15 = new ObservableCollection<Duo>();
-        public static ObservableCollection<Participant> listGroup = new ObservableCollection<Participant>();
-        public static ObservableCollection<Participant> listCombi = new ObservableCollection<Participant>();
-        public static ObservableCollection<Participant> listTrophy = new ObservableCollection<Participant>();
+        public static ObservableCollection<Group> listGroup = new ObservableCollection<Group>();
+        public static ObservableCollection<Group> listCombi = new ObservableCollection<Group>();
+        public static ObservableCollection<Trophy> listTrophy = new ObservableCollection<Trophy>();
+        public static Excel.Application excelApp;
+        public static Excel.Workbook WorkBookExcel;
+
+        static DataProcessor()
+        {
+            excelApp = new Excel.Application();
+            //Книга.
+            WorkBookExcel = excelApp.Workbooks.Add();
+            Excel.Worksheet wsTrophy = WorkBookExcel.ActiveSheet;
+            wsTrophy.Name = "Трофи";
+            Excel.Worksheet wsCombi = WorkBookExcel.Sheets.Add();
+            wsCombi.Name = "Комби";
+            Excel.Worksheet wsGroup = WorkBookExcel.Sheets.Add();
+            wsGroup.Name = "Группа";
+            Excel.Worksheet wsDuo13_15 = WorkBookExcel.Sheets.Add();
+            wsDuo13_15.Name = "Дуэт 13-15";
+            Excel.Worksheet wsDuo12 = WorkBookExcel.Sheets.Add();
+            wsDuo12.Name = "Дуэт 12 и м";
+            Excel.Worksheet wsDuo8 = WorkBookExcel.Sheets.Add();
+            wsDuo8.Name = "Дуэт 8 и м";
+            Excel.Worksheet wsSolo13_15 = WorkBookExcel.Sheets.Add();
+            wsSolo13_15.Name = "Соло 13-15";
+            Excel.Worksheet wsSolo12 = WorkBookExcel.Sheets.Add();
+            wsSolo12.Name = "Соло 12 и м";
+            Excel.Worksheet wsSolo8 = WorkBookExcel.Sheets.Add();
+            wsSolo8.Name = "Соло 8 и м";
+            Excel.Worksheet wsOP13_15 = WorkBookExcel.Sheets.Add();
+            wsOP13_15.Name = "ОП 13-15";
+            Excel.Worksheet wsOP12 = WorkBookExcel.Sheets.Add();
+            wsOP12.Name = "ОП 12 и м";
+            Excel.Worksheet wsOP8 = WorkBookExcel.Sheets.Add();
+            wsOP8.Name = "ОП 8 и м";
+        }
+
+
         public static ObservableCollection<Participant> GetList1(string path)
         {
             ObservableCollection<Participant> list = new ObservableCollection<Participant>();
@@ -88,15 +123,78 @@ namespace SyncSwimming
             }
         }
 
-        public static void ExportToExcel(ObservableCollection<Participant> listP)
+        public static ObservableCollection<Group> GetList8(string path)
         {
-            var excelApp = new Excel.Application();
-            excelApp.Visible = true;
-            //Книга.
-            var WorkBookExcel = excelApp.Workbooks.Add();
-            //Таблица.
-            var WorkSheetExcel = (Excel.Worksheet)WorkBookExcel.Sheets[1];
-            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            ObservableCollection<Group> list = new ObservableCollection<Group>();
+            using (StreamReader sr = new StreamReader(new FileStream("../../Resources/" + path, FileMode.Open)))
+            {
+                string line;
+                char[] separator = { '\t' };
+                try
+                {
+                    while (true)
+                    {
+                        Participant[] group = new Participant[8] { new Participant(), new Participant(), new Participant(), new Participant(), new Participant(), new Participant(), new Participant(), new Participant() };
+                        line = sr.ReadLine();
+                        string[] words = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                        for (int i = 0; i < 8; i++)
+                        {
+                            group[i].FIO = words[i];
+                            group[i].Year = Convert.ToInt32(words[i + 8]);
+                            group[i].Category = words[i + 16];
+                            group[i].Team = words[words.Length - 1];
+                        }
+                        
+                        list.Add(new Group(group));
+                    }
+                }
+                catch
+                {
+
+                }
+                return list;
+            }
+        }
+        public static ObservableCollection<Trophy> GetList(string path)
+        {
+            ObservableCollection<Trophy> list = new ObservableCollection<Trophy>();
+            string line = File.ReadAllText("../../Resources/" + path);
+            string[] sep = { "\r\n$\r\n" };
+            string[] teams = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            char[] separator = { '\t' };
+            try
+            {
+                for (int j = 0; j < teams.Length; j++)
+                {
+                    List<Participant> group = new List<Participant>();
+                    
+                    string[] words = teams[j].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    for (int i = 0; i < (words.Length - 1) / 3; i++)
+                    {
+                        group.Add(new Participant());
+                        group[i].FIO = words[i];
+                        group[i].Year = Convert.ToInt32(words[i + (words.Length - 1) / 3]);
+                        group[i].Category = words[i + words.Length / 4 * 2];
+                        group[i].Team = words[words.Length - 1];
+                    }
+
+                    list.Add(new Trophy(group.ToArray()));
+                }
+            }
+            catch
+            {
+
+            }
+            return list;
+            
+        }
+
+
+        public static Task ExportToExcel(ObservableCollection<Participant> listP, string wsName)
+        {
+            return Task.Run(() => { 
+            Excel._Worksheet workSheet = (Excel.Worksheet)WorkBookExcel.Sheets[wsName];
+
             workSheet.Cells[1, "A"] = "ФИО";
             workSheet.Cells[1, "B"] = "Год рождения";
             workSheet.Cells[1, "C"] = "Разряд";
@@ -111,7 +209,7 @@ namespace SyncSwimming
             workSheet.Cells[1, "M"] = "Результат";
             workSheet.Cells[1, "N"] = "Итог";
             int row = 2;
-            foreach (Participant item in Current)
+            foreach (Participant item in listP)
             {
                 workSheet.Cells[row, "A"] = item.FIO;
                 workSheet.Cells[row, "B"] = item.Year.ToString();
@@ -148,16 +246,59 @@ namespace SyncSwimming
             workSheet.Columns[2].AutoFit();
             workSheet.Columns[3].AutoFit();
             workSheet.Columns[4].AutoFit();
+        });
         }
-        public static void ExportToExcel(ObservableCollection<Duo> listP)
+        public static Task ExportToExcel(ObservableCollection<Duo> listP, string wsName)
         {
-            var excelApp = new Excel.Application();
-            excelApp.Visible = true;
-            //Книга.
-            var WorkBookExcel = excelApp.Workbooks.Add();
-            //Таблица.
-            var WorkSheetExcel = (Excel.Worksheet)WorkBookExcel.Sheets[1];
-            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            return Task.Run(() =>
+            {
+                Excel._Worksheet workSheet = (Excel.Worksheet)WorkBookExcel.Sheets[wsName];
+                workSheet.Cells[1, "A"] = "ФИО";
+                workSheet.Cells[1, "B"] = "Год рождения";
+                workSheet.Cells[1, "C"] = "Разряд";
+                workSheet.Cells[1, "D"] = "Команда";
+                workSheet.Cells[1, "F"] = "С1";
+                workSheet.Cells[1, "G"] = "С2";
+                workSheet.Cells[1, "H"] = "С3";
+                workSheet.Cells[1, "I"] = "С4";
+                workSheet.Cells[1, "J"] = "С5";
+                workSheet.Cells[1, "K"] = "Результат";
+                workSheet.Cells[1, "L"] = "Итог";
+                int row = 2;
+                foreach (Duo item in listP)
+                {
+                    workSheet.Cells[row, "A"] = item.Duo1.FIO + " " + item.Duo2.FIO;
+                    workSheet.Cells[row, "B"] = item.Duo1.Year + " " + item.Duo2.Year;
+                    workSheet.Cells[row, "C"] = item.Duo1.Category + " " + item.Duo2.Category;
+                    workSheet.Cells[row, "D"] = item.Duo1.Team;
+                    workSheet.Cells[row, "L"] = item.OverAllPP;
+                    row++;
+                    workSheet.Cells[row, "E"] = "А";
+                    workSheet.Cells[row + 1, "E"] = "И";
+                    workSheet.Cells[row + 2, "E"] = "Т";
+                    for (int i = 0; i < 3; i++)
+                    {
+                        workSheet.Cells[row, "F"] = item.DuoScores[i].RefferiesPP[0];
+                        workSheet.Cells[row, "G"] = item.DuoScores[i].RefferiesPP[1];
+                        workSheet.Cells[row, "H"] = item.DuoScores[i].RefferiesPP[2];
+                        workSheet.Cells[row, "I"] = item.DuoScores[i].RefferiesPP[3];
+                        workSheet.Cells[row, "J"] = item.DuoScores[i].RefferiesPP[4];
+                        workSheet.Cells[row, "K"] = item.DuoScores[i].ResultPP;
+                        row++;
+                    }
+                }
+                workSheet.Columns[1].AutoFit();
+                workSheet.Columns[2].AutoFit();
+                workSheet.Columns[3].AutoFit();
+                workSheet.Columns[4].AutoFit();
+            });
+        }
+
+        public static Task ExportToExcel(ObservableCollection<Group> listP, string wsName)
+        {
+            return Task.Run(() =>
+            {
+            Excel._Worksheet workSheet = (Excel.Worksheet)WorkBookExcel.Sheets[wsName];
             workSheet.Cells[1, "A"] = "ФИО";
             workSheet.Cells[1, "B"] = "Год рождения";
             workSheet.Cells[1, "C"] = "Разряд";
@@ -170,25 +311,25 @@ namespace SyncSwimming
             workSheet.Cells[1, "K"] = "Результат";
             workSheet.Cells[1, "L"] = "Итог";
             int row = 2;
-            foreach (Duo item in (ObservableCollection<Duo>)Current)
+            foreach (Group item in listP)
             {
-                workSheet.Cells[row, "A"] = item.Duo1.FIO + " " + item.Duo2.FIO;
-                workSheet.Cells[row, "B"] = item.Duo1.Year + " " + item.Duo2.Year;
-                workSheet.Cells[row, "C"] = item.Duo1.Category + " " + item.Duo2.Category;
-                workSheet.Cells[row, "D"] = item.Duo1.Team;
-                workSheet.Cells[row, "N"] = item.OverAllPP;
+                workSheet.Cells[row, "A"] = item.FIO;
+                workSheet.Cells[row, "B"] = item.Year;
+                workSheet.Cells[row, "C"] = item.Category;
+                workSheet.Cells[row, "D"] = item.Team;
+                workSheet.Cells[row, "L"] = item.OverAllPP;
                 row++;
                 workSheet.Cells[row, "E"] = "А";
                 workSheet.Cells[row + 1, "E"] = "И";
                 workSheet.Cells[row + 2, "E"] = "Т";
                 for (int i = 0; i < 3; i++)
                 {
-                    workSheet.Cells[row, "F"] = item.DuoScores[i].RefferiesPP[0];
-                    workSheet.Cells[row, "G"] = item.DuoScores[i].RefferiesPP[1];
-                    workSheet.Cells[row, "H"] = item.DuoScores[i].RefferiesPP[2];
-                    workSheet.Cells[row, "I"] = item.DuoScores[i].RefferiesPP[3];
-                    workSheet.Cells[row, "J"] = item.DuoScores[i].RefferiesPP[4];
-                    workSheet.Cells[row, "M"] = item.DuoScores[i].ResultPP;
+                    workSheet.Cells[row, "F"] = item.GroupScores[i].RefferiesPP[0];
+                    workSheet.Cells[row, "G"] = item.GroupScores[i].RefferiesPP[1];
+                    workSheet.Cells[row, "H"] = item.GroupScores[i].RefferiesPP[2];
+                    workSheet.Cells[row, "I"] = item.GroupScores[i].RefferiesPP[3];
+                    workSheet.Cells[row, "J"] = item.GroupScores[i].RefferiesPP[4];
+                    workSheet.Cells[row, "K"] = item.GroupScores[i].ResultPP;
                     row++;
                 }
             }
@@ -196,7 +337,60 @@ namespace SyncSwimming
             workSheet.Columns[2].AutoFit();
             workSheet.Columns[3].AutoFit();
             workSheet.Columns[4].AutoFit();
+            });
         }
+
+        public static Task ExportToExcel(ObservableCollection<Trophy> listP, string wsName)
+        {
+            return Task.Run(() =>
+            {
+                Excel._Worksheet workSheet = (Excel.Worksheet)WorkBookExcel.Sheets[wsName];
+                workSheet.Cells[1, "A"] = "ФИО";
+                workSheet.Cells[1, "B"] = "Год рождения";
+                workSheet.Cells[1, "C"] = "Разряд";
+                workSheet.Cells[1, "D"] = "Команда";
+                workSheet.Cells[1, "F"] = "С1";
+                workSheet.Cells[1, "G"] = "С2";
+                workSheet.Cells[1, "H"] = "С3";
+                workSheet.Cells[1, "I"] = "С4";
+                workSheet.Cells[1, "J"] = "С5";
+                workSheet.Cells[1, "K"] = "C6";
+                workSheet.Cells[1, "L"] = "C7";
+                workSheet.Cells[1, "M"] = "C8";
+                workSheet.Cells[1, "N"] = "C9";
+                workSheet.Cells[1, "O"] = "Результат";
+                workSheet.Cells[1, "P"] = "Итог";
+
+                int row = 2;
+                foreach (Trophy item in listP)
+                {
+                    workSheet.Cells[row, "A"] = item.FIO;
+                    workSheet.Cells[row, "B"] = item.Year;
+                    workSheet.Cells[row, "C"] = item.Category;
+                    workSheet.Cells[row, "D"] = item.Team;
+                    workSheet.Cells[row, "P"] = item.OverAllPP;
+                    row++;
+                    workSheet.Cells[row, "E"] = "А";
+
+                    workSheet.Cells[row, "F"] = item.TrophyScores.RefferiesT[0];
+                    workSheet.Cells[row, "G"] = item.TrophyScores.RefferiesT[1];
+                    workSheet.Cells[row, "H"] = item.TrophyScores.RefferiesT[2];
+                    workSheet.Cells[row, "I"] = item.TrophyScores.RefferiesT[3];
+                    workSheet.Cells[row, "J"] = item.TrophyScores.RefferiesT[4];
+                    workSheet.Cells[row, "K"] = item.TrophyScores.RefferiesT[5];
+                    workSheet.Cells[row, "L"] = item.TrophyScores.RefferiesT[6];
+                    workSheet.Cells[row, "M"] = item.TrophyScores.RefferiesT[7];
+                    workSheet.Cells[row, "N"] = item.TrophyScores.RefferiesT[8];
+                    workSheet.Cells[row, "O"] = item.TrophyScores.ResultT;
+                    row++;
+                }
+                workSheet.Columns[1].AutoFit();
+                workSheet.Columns[2].AutoFit();
+                workSheet.Columns[3].AutoFit();
+                workSheet.Columns[4].AutoFit();
+            });
+        }
+
 
     }
 }

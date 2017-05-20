@@ -46,7 +46,7 @@ namespace SyncSwimming
             }
             else if (!int.TryParse(NewYear1.Text, out year1) || year1 < 1990 || year1 > 2015 || !int.TryParse(NewYear2.Text, out year2) || year2 < 1990 || year2 > 2015)
             {
-                MessageBox.Show("Невыерный год рождения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверный год рождения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -76,7 +76,7 @@ namespace SyncSwimming
                     newDuo.Duo2.Year = year2;
                     newDuo.Duo1.Team = NewTeam1.Text;
                     newDuo.Duo2.Team = NewTeam2.Text;
-                    ((ObservableCollection<Duo>)DataProcessor.Current)[position] = newDuo;
+                    ((ObservableCollection<Duo>)DataProcessor.Current)[position] = new Duo(newDuo.Duo1, newDuo.Duo2);
                 }
                 Close();
             }
