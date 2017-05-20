@@ -64,7 +64,7 @@ namespace SyncSwimming
         public static ObservableCollection<Participant> GetList1(string path)
         {
             ObservableCollection<Participant> list = new ObservableCollection<Participant>();
-            using (StreamReader sr = new StreamReader(new FileStream("../../Resources/" + path, FileMode.Open)))
+            using (StreamReader sr = new StreamReader(new FileStream("Resource/" + path, FileMode.Open)))
             {
                 string line;
                 char[] separator = { '\t' };
@@ -92,7 +92,7 @@ namespace SyncSwimming
         public static ObservableCollection<Duo> GetList2(string path)
         {
             ObservableCollection<Duo> list = new ObservableCollection<Duo>();
-            using (StreamReader sr = new StreamReader(new FileStream("../../Resources/" + path, FileMode.Open)))
+            using (StreamReader sr = new StreamReader(new FileStream("Resource/" + path, FileMode.Open)))
             {
                 string line;
                 char[] separator = { '\t' };
@@ -126,7 +126,7 @@ namespace SyncSwimming
         public static ObservableCollection<Group> GetList8(string path)
         {
             ObservableCollection<Group> list = new ObservableCollection<Group>();
-            using (StreamReader sr = new StreamReader(new FileStream("../../Resources/" + path, FileMode.Open)))
+            using (StreamReader sr = new StreamReader(new FileStream("Resource/" + path, FileMode.Open)))
             {
                 string line;
                 char[] separator = { '\t' };
@@ -158,7 +158,7 @@ namespace SyncSwimming
         public static ObservableCollection<Trophy> GetList(string path)
         {
             ObservableCollection<Trophy> list = new ObservableCollection<Trophy>();
-            string line = File.ReadAllText("../../Resources/" + path);
+            string line = File.ReadAllText("Resource/" + path);
             string[] sep = { "\r\n$\r\n" };
             string[] teams = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
             char[] separator = { '\t' };
