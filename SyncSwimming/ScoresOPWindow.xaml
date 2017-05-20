@@ -1,11 +1,11 @@
-﻿<Window x:Class="SyncSwimming.ScoresWindow"
+﻿<Window x:Class="SyncSwimming.ScoresOPWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SyncSwimming"
         mc:Ignorable="d"
-        Title="ScoresWindow" ResizeMode="NoResize" Height="234.25" Width="600">
+        Title="ScoresWindow" ResizeMode="NoResize" Height="241.75" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -16,16 +16,16 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Name="Fio">ФИО:</TextBlock>
-            <TextBlock Grid.Column="1" Name="BirthYear">Год рождения:</TextBlock>
-            <TextBlock Grid.Column="2" Name="Categ">Разряд:</TextBlock>
-            <TextBlock Grid.Column="3" Name="TeamName">Команда:</TextBlock>
+            <TextBlock Margin="5" Grid.Column="0" Name="Fio">ФИО:</TextBlock>
+            <TextBlock Margin="5" Grid.Column="1" Name="BirthYear">Год рождения:</TextBlock>
+            <TextBlock Margin="5" Grid.Column="2" Name="Categ">Разряд:</TextBlock>
+            <TextBlock Margin="5" Grid.Column="3" Name="TeamName">Команда:</TextBlock>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -37,13 +37,13 @@
             <DataGrid ScrollViewer.CanContentScroll="False" Margin="5" Name="scoresGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Grid.Column="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" IsReadOnly="True" Header="Фигура" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 1" Binding="{Binding Path=Refferies[0]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 2" Binding="{Binding Path=Refferies[1]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 3" Binding="{Binding Path=Refferies[2]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 4" Binding="{Binding Path=Refferies[3]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 5" Binding="{Binding Path=Refferies[4]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 6" Binding="{Binding Path=Refferies[5]}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="Судья 7" Binding="{Binding Path=Refferies[6]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 1" Binding="{Binding Path=RefferiesOP[0]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 2" Binding="{Binding Path=RefferiesOP[1]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 3" Binding="{Binding Path=RefferiesOP[2]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 4" Binding="{Binding Path=RefferiesOP[3]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 5" Binding="{Binding Path=RefferiesOP[4]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 6" Binding="{Binding Path=RefferiesOP[5]}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Судья 7" Binding="{Binding Path=RefferiesOP[6]}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Margin="0 5 5 5" Grid.Column="1">

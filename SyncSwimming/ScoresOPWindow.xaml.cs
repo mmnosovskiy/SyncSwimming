@@ -17,14 +17,14 @@ namespace SyncSwimming
     /// <summary>
     /// Логика взаимодействия для ScoresWindow.xaml
     /// </summary>
-    public partial class ScoresWindow : Window
+    public partial class ScoresOPWindow : Window
     {
         Participant participant;
-        public ScoresWindow()
+        public ScoresOPWindow()
         {
             InitializeComponent();
         }
-        public ScoresWindow(Participant par)
+        public ScoresOPWindow(Participant par)
         {
             InitializeComponent();
             participant = par;
@@ -32,14 +32,14 @@ namespace SyncSwimming
             BirthYear.Text += " " + participant.Year;
             Categ.Text += " " + participant.Category;
             TeamName.Text += " " + participant.Team;
-            scoresGrid.ItemsSource = participant.PersonalScores;
+            scoresGrid.ItemsSource = participant.PersonalScoresOP;
             if (participant.IsCounted)
             {
-                F1_T.Text = participant.PersonalScores[0].Result.ToString();
-                F2_T.Text = participant.PersonalScores[1].Result.ToString();
-                F3_T.Text = participant.PersonalScores[2].Result.ToString();
-                F4_T.Text = participant.PersonalScores[3].Result.ToString();
-                OverAllText.Text = "Итог: " + participant.OverAll;
+                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString();
+                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString();
+                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString();
+                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString();
+                OverAllText.Text = "Итог: " + participant.OverAllOP;
             }
         }
 
@@ -48,15 +48,15 @@ namespace SyncSwimming
             double[] f = new double[4];
             if (double.TryParse(F1.Text, out f[0]) && double.TryParse(F2.Text, out f[1]) && double.TryParse(F3.Text, out f[2]) && double.TryParse(F4.Text, out f[3]))
             {
-                for (int i = 0; i < participant.PersonalScores.Count; i++)
+                for (int i = 0; i < participant.PersonalScoresOP.Count; i++)
                 {
-                    participant.PersonalScores[i].Coef = f[i];
+                    participant.PersonalScoresOP[i].Coef = f[i];
                 }
-                F1_T.Text = participant.PersonalScores[0].Result.ToString();
-                F2_T.Text = participant.PersonalScores[1].Result.ToString();
-                F3_T.Text = participant.PersonalScores[2].Result.ToString();
-                F4_T.Text = participant.PersonalScores[3].Result.ToString();
-                OverAllText.Text = "Итог: " + participant.OverAll;
+                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString();
+                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString();
+                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString();
+                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString();
+                OverAllText.Text = "Итог: " + participant.OverAllOP;
                 participant.IsCounted = true;
             }
             else

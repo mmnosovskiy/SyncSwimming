@@ -9,35 +9,59 @@ namespace SyncSwimming
 {
     public class Participant
     {
-        ObservableCollection<Scores> _pScores = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1" }, new Scores() { Name = "Ф2" }, new Scores() { Name = "Ф3" }, new Scores() { Name = "Ф4" } });
+        ObservableCollection<Scores> _pScoresOP = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1" }, new Scores() { Name = "Ф2" }, new Scores() { Name = "Ф3" }, new Scores() { Name = "Ф4" } });
+        ObservableCollection<Scores> _pScoresPP = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "Т", Coef = 0.3 } });
         public string FIO { get; set; }
         public int Year { get; set; }
         public string Category { get; set; }
         public string Team { get; set; }
         public bool IsCounted { get; set; }
-        public ObservableCollection<Scores> PersonalScores
+        public ObservableCollection<Scores> PersonalScoresOP
         {
             get
             {
-                return _pScores;
+                return _pScoresOP;
             }
             set
             {
-                _pScores = value;
+                _pScoresOP = value;
             }
         }
-        public double OverAll
+        public ObservableCollection<Scores> PersonalScoresPP
+        {
+            get
+            {
+                return _pScoresPP;
+            }
+            set
+            {
+                _pScoresPP = value;
+            }
+        }
+        public double OverAllOP
         {
             get
             {
                 double coef = 0;
                 double sum = 0;
-                foreach (Scores item in PersonalScores)
+                foreach (Scores item in PersonalScoresOP)
                 {
                     coef += item.Coef;
-                    sum += item.Result;
+                    sum += item.ResultOP;
                 }
                 return sum * coef;
+            }
+        }
+        public double OverAllPP
+        {
+            get
+            {
+                double sum = 0;
+                foreach (Scores item in PersonalScoresPP)
+                {
+                    sum += item.ResultPP * item.Coef;
+                }
+                return sum;
             }
         }
 
@@ -48,7 +72,7 @@ namespace SyncSwimming
             copy.Category = Category;
             copy.Year = Year;
             copy.Team = Team;
-            copy.PersonalScores = PersonalScores;
+            copy.PersonalScoresOP = PersonalScoresOP;
             return copy;
         }
         public bool Contains(string text)

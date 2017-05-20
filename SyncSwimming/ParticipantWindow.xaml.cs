@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,18 +18,18 @@ namespace SyncSwimming
     /// <summary>
     /// Логика взаимодействия для NewParticipant.xaml
     /// </summary>
-    public partial class NewParticipantWindow : Window
+    public partial class ParticipantWindow : Window
     {
         Participant newParticipant;
         bool NewEl;
         int position;
-        public NewParticipantWindow()
+        public ParticipantWindow()
         {
             InitializeComponent();
             newParticipant = new Participant();
             NewEl = true;
         }
-        public NewParticipantWindow(Participant element, int pos)
+        public ParticipantWindow(Participant element, int pos)
         {
             InitializeComponent();
             position = pos;
@@ -54,8 +55,8 @@ namespace SyncSwimming
                 newParticipant.Category = NewCateg.Text;
                 newParticipant.Team = NewTeam.Text;
                 newParticipant.Year = year;
-                if (NewEl) DataProcessor.list.Add(newParticipant);
-                else DataProcessor.list[position] = newParticipant;
+                if (NewEl) ((ObservableCollection<Participant>)DataProcessor.Current).Add(newParticipant);
+                else ((ObservableCollection<Participant>)DataProcessor.Current)[position] = newParticipant;
                 Close();
             }
         }

@@ -61,14 +61,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataProcessor.cs" />
-    <Compile Include="NewParticipantWindow.xaml.cs">
-      <DependentUpon>NewParticipantWindow.xaml</DependentUpon>
+    <Compile Include="Duo.cs" />
+    <Compile Include="DuoWindow.xaml.cs">
+      <DependentUpon>DuoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipantWindow.xaml.cs">
+      <DependentUpon>ParticipantWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Participant.cs" />
     <Compile Include="Scores.cs" />
-    <Compile Include="ScoresWindow.xaml.cs">
-      <DependentUpon>ScoresWindow.xaml</DependentUpon>
+    <Compile Include="ScoresDuoWindow.xaml.cs">
+      <DependentUpon>ScoresDuoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScoresOPWindow.xaml.cs">
+      <DependentUpon>ScoresOPWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScoresPPWindow.xaml.cs">
+      <DependentUpon>ScoresPPWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DuoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,11 +95,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewParticipantWindow.xaml">
+    <Page Include="ParticipantWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScoresWindow.xaml">
+    <Page Include="ScoresDuoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScoresOPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScoresPPWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
