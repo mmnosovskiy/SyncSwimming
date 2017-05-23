@@ -42,7 +42,7 @@ namespace SyncSwimming
         public string Team { get; set; }
         public bool IsCounted { get; set; }
 
-        public ObservableCollection<Scores> GroupScores = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "Т", Coef = 0.3 } });
+        public ObservableCollection<Scores> GroupScores = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "С", Coef = 0.3 } });
         public double OverAllPP
         {
             get
