@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_028D991045C441F4A686C971FCD30F0C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0429441005164397A271C4ABFE23ABDD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,6 +46,12 @@
         "Entry"
         {
         "MsmKey" = "8:_20A03720E32D4244B17735A2E8C1007F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42194F7B16BC41FBA8A9DC3F15A00781"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -210,6 +222,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_028D991045C441F4A686C971FCD30F0C"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\SyncSwimming.xlsx"
+            "TargetName" = "8:SyncSwimming.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0429441005164397A271C4ABFE23ABDD"
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListGroup.txt"
@@ -294,6 +326,26 @@
             {
             "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\ListSolo13_15.txt"
             "TargetName" = "8:ListSolo13_15.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42194F7B16BC41FBA8A9DC3F15A00781"
+            {
+            "SourcePath" = "8:..\\SyncSwimming\\bin\\Debug\\Resource\\Data.dat"
+            "TargetName" = "8:Data.dat"
             "Tag" = "8:"
             "Folder" = "8:_BCAB65E9713D42CBBD7A1BE9C410585C"
             "Condition" = "8:"
@@ -477,11 +529,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_FB589E87330538133A9F71058610223B"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"

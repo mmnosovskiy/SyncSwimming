@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Height="45" ScrollViewer.CanContentScroll="False" Margin="5" Name="scoresGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Grid.Column="0">
+            <DataGrid Height="45" CanUserDeleteRows="False" ScrollViewer.CanContentScroll="False" Margin="5" Name="scoresGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Grid.Column="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" IsReadOnly="True" Header="Оценка" Binding="{Binding Path=Name}"></DataGridTextColumn>
                     <DataGridTextColumn Width="*" Header="Судья 1" Binding="{Binding Path=RefferiesT[0]}"></DataGridTextColumn>

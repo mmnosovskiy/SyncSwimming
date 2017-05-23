@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SyncSwimming
 {
@@ -33,7 +34,7 @@ namespace SyncSwimming
         {
             excelApp = new Excel.Application();
             //Книга.
-            WorkBookExcel = excelApp.Workbooks.Add();
+            WorkBookExcel = excelApp.Application.Workbooks.Add();
             Excel.Worksheet wsTrophy = WorkBookExcel.ActiveSheet;
             wsTrophy.Name = "Трофи";
             Excel.Worksheet wsCombi = WorkBookExcel.Sheets.Add();
@@ -391,7 +392,45 @@ namespace SyncSwimming
             });
         }
 
+        public static void Deserialize()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream("Resource/Data.dat", FileMode.Open))
+            {
+                listOP8 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listOP12 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listOP13_15 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listSolo8 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listSolo12 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listSolo13_15 = (ObservableCollection<Participant>)bf.Deserialize(fs);
+                listDuo8 = (ObservableCollection<Duo>)bf.Deserialize(fs);
+                listDuo12 = (ObservableCollection<Duo>)bf.Deserialize(fs);
+                listDuo13_15 = (ObservableCollection<Duo>)bf.Deserialize(fs);
+                listGroup = (ObservableCollection<Group>)bf.Deserialize(fs);
+                listCombi = (ObservableCollection<Group>)bf.Deserialize(fs);
+                listTrophy = (ObservableCollection<Trophy>)bf.Deserialize(fs);
+            }
+        }
 
+        public static void Serialize()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = new FileStream("Resource/Data.dat", FileMode.Create))
+            {
+                bf.Serialize(fs, listOP8);
+                bf.Serialize(fs, listOP12);
+                bf.Serialize(fs, listOP13_15);
+                bf.Serialize(fs, listSolo8);
+                bf.Serialize(fs, listSolo12);
+                bf.Serialize(fs, listSolo13_15);
+                bf.Serialize(fs, listDuo8);
+                bf.Serialize(fs, listDuo12);
+                bf.Serialize(fs, listDuo13_15);
+                bf.Serialize(fs, listGroup);
+                bf.Serialize(fs, listCombi);
+                bf.Serialize(fs, listTrophy);
+            }
+        } 
     }
 }
 

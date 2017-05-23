@@ -56,15 +56,16 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
                     <Button Name="ExportButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonExport_Click">Экспорт</Button>
-                    <Button Name="ExportAllButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonExportAll_Click">Экспортировать все</Button>
+                    <Button Name="ExportAllButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonExportAll_Click">Экспорт всего</Button>
                     <Label Margin="5" Content="Найти: "></Label>
                     <TextBox Name="SearchTextBox" Margin="5" VerticalContentAlignment="Center" Width="85" TextChanged="SearchTextBox_TextChanged"></TextBox>
                     <TextBlock Name="FoundNumber" Margin="5" VerticalAlignment="Center"></TextBlock>
+                    <Button Name="ButtonSort" Margin="5" VerticalAlignment="Center" Click="ButtonSort_Click">Сортировать по итогу</Button>
                     <ProgressBar Name="prBar" Width="50" IsIndeterminate="True" Visibility="Hidden" Margin="5"></ProgressBar>
                 </StackPanel>
-                <Button Grid.Column="1" Content="Добавить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonAdd_Click"></Button>
-                <Button Grid.Column="2" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonDelete_Click"></Button>
-                <Button Grid.Column="3" Content="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="100" Margin="5" Click="ButtonEdit_Click"></Button>
+                <Button Grid.Column="1" Name="AddButton" Content="Добавить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="5" Click="ButtonAdd_Click"></Button>
+                <Button Grid.Column="2" Name="DeleteButton" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="5" Click="ButtonDelete_Click"></Button>
+                <Button Grid.Column="3" Content="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="5" Click="ButtonEdit_Click" Name="EditButton"></Button>
             </Grid>
 
 

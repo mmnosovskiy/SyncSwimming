@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SyncSwimming
 {
-    public class Trophy : Group
+    [Serializable]
+    public class Trophy : Group, IComparable
     {
         public Scores TrophyScores = new Scores() { Name = "А" };
 
@@ -20,6 +21,13 @@ namespace SyncSwimming
 
         public Trophy(Participant[] group) : base(group)
         {
+        }
+
+        public new int CompareTo(object obj)
+        {
+            if (OverAllT > ((Trophy)obj).OverAllT) return -1;
+            else if (OverAllT == ((Trophy)obj).OverAllT) return 0;
+            else return 1;
         }
     }
 }

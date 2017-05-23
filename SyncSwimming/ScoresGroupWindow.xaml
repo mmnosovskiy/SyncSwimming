@@ -135,7 +135,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <DataGrid ScrollViewer.CanContentScroll="False" Margin="5" Name="scoresGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Grid.Column="0">
+            <DataGrid ScrollViewer.CanContentScroll="False" CanUserDeleteRows="False" Margin="5" Name="scoresGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Grid.Column="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" IsReadOnly="True" Header="Оценка" Binding="{Binding Path=Name}"></DataGridTextColumn>
                     <DataGridTextColumn Width="*" Header="Судья 1" Binding="{Binding Path=RefferiesPP[0]}"></DataGridTextColumn>

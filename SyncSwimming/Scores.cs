@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyncSwimming
 {
+    [Serializable]
     public class Scores
     {
         private double[] _judjesOP = new double[7];
@@ -50,14 +51,15 @@ namespace SyncSwimming
         {
             get
             {
-                return Sum5() * Coef;
+                return Sum5() * Coef / 5;
             }
         }
         public double ResultPP
         {
             get
             {
-                return Sum3() * Coef;
+                if (Name == "А") return Sum3() / 3 * 4;
+                else return Sum3() / 3 * 3; 
             }
         }
         public double ResultT
@@ -77,7 +79,7 @@ namespace SyncSwimming
                 if (RefferiesOP[i] < min) min = RefferiesOP[i];
                 sum += RefferiesOP[i];
             }
-            return sum - max - min;
+            return (sum - max - min);
         }
         public double Sum3()
         {

@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace SyncSwimming
 {
-    public class Participant
+    [Serializable]
+    public class Participant : IComparable
     {
-        ObservableCollection<Scores> _pScoresOP = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1" }, new Scores() { Name = "Ф2" }, new Scores() { Name = "Ф3" }, new Scores() { Name = "Ф4" } });
-        ObservableCollection<Scores> _pScoresPP = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "Т", Coef = 0.3 } });
+        ObservableCollection<Scores> _pScoresOP = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1", Coef = 1.6 }, new Scores() { Name = "Ф2", Coef = 1.4 }, new Scores() { Name = "Ф3", Coef = 2.0 }, new Scores() { Name = "Ф4", Coef = 1.7 } });
+        ObservableCollection<Scores> _pScoresPP = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "С", Coef = 0.3 } });
         public string FIO { get; set; }
         public int Year { get; set; }
         public string Category { get; set; }
@@ -49,7 +50,7 @@ namespace SyncSwimming
                     coef += item.Coef;
                     sum += item.ResultOP;
                 }
-                return sum * coef;
+                return sum / coef * 10;
             }
         }
         public double OverAllPP
@@ -81,6 +82,21 @@ namespace SyncSwimming
                 || Category.Contains(text)
                 || Team.Contains(text)
                 || Year.ToString().Contains(text);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (DataProcessor.Current == DataProcessor.listOP8 || DataProcessor.Current == DataProcessor.listOP12 || DataProcessor.Current == DataProcessor.listOP13_15)
+            {
+                if (OverAllOP > ((Participant)obj).OverAllOP) return -1;
+                else return 1;
+            }
+            else 
+            {
+                if (OverAllPP > ((Participant)obj).OverAllPP) return -1;
+                else if (OverAllOP == ((Participant)obj).OverAllOP) return 0;
+                else return 1;
+            }
         }
     }
 }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace SyncSwimming
 {
-    public class Group
+    [Serializable]
+    public class Group : IComparable
     {
         public Participant[] GroupP { get; set; }
         public Participant this[int index]
@@ -60,6 +61,13 @@ namespace SyncSwimming
                 || Category.Contains(text)
                 || Team.Contains(text)
                 || Year.Contains(text);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (OverAllPP > ((Group)obj).OverAllPP) return -1;
+            else if (OverAllPP == ((Group)obj).OverAllPP) return 0;
+            else return 1;
         }
     }
 }
