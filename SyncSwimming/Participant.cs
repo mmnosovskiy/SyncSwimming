@@ -10,13 +10,44 @@ namespace SyncSwimming
     [Serializable]
     public class Participant : IComparable
     {
-        ObservableCollection<Scores> _pScoresOP = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1", Coef = 1.6 }, new Scores() { Name = "Ф2", Coef = 1.4 }, new Scores() { Name = "Ф3", Coef = 2.0 }, new Scores() { Name = "Ф4", Coef = 1.7 } });
-        ObservableCollection<Scores> _pScoresPP = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "С", Coef = 0.3 } });
+        ObservableCollection<Scores> _pScoresOP = new ObservableCollection<Scores>(new Scores[4] { new Scores() { Name = "Ф1" }, new Scores() { Name = "Ф2" }, new Scores() { Name = "Ф3" }, new Scores() { Name = "Ф4" } });
+        ObservableCollection<Scores> _pScoresPP = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 1 }, new Scores() { Name = "И", Coef = 1 }, new Scores() { Name = "С", Coef = 1 } });
         public string FIO { get; set; }
         public int Year { get; set; }
         public string Category { get; set; }
         public string Team { get; set; }
         public bool IsCounted { get; set; }
+        public int Position { get; set; }
+        public Participant(string cat)
+        {
+            FIO = "";
+            Year = 0;
+            Category = "";
+            Team = "";
+            IsCounted = false;
+            Position = 0;
+            switch (cat)
+            {
+                case "OP8":
+                    _pScoresOP[0].Coef = DataProcessor.F1_8;
+                    _pScoresOP[1].Coef = DataProcessor.F2_8;
+                    _pScoresOP[2].Coef = DataProcessor.F3_8;
+                    _pScoresOP[3].Coef = DataProcessor.F4_8;
+                    break;
+                case "OP12":
+                    _pScoresOP[0].Coef = DataProcessor.F1_12;
+                    _pScoresOP[1].Coef = DataProcessor.F2_12;
+                    _pScoresOP[2].Coef = DataProcessor.F3_12;
+                    _pScoresOP[3].Coef = DataProcessor.F4_12;
+                    break;
+                case "OP13_15":
+                    _pScoresOP[0].Coef = DataProcessor.F1_13_15;
+                    _pScoresOP[1].Coef = DataProcessor.F2_13_15;
+                    _pScoresOP[2].Coef = DataProcessor.F3_13_15;
+                    _pScoresOP[3].Coef = DataProcessor.F4_13_15;
+                    break;
+            }
+        }
         public ObservableCollection<Scores> PersonalScoresOP
         {
             get
@@ -68,12 +99,13 @@ namespace SyncSwimming
 
         public Participant Copy()
         {
-            Participant copy = new Participant();
+            Participant copy = new Participant("");
             copy.FIO = FIO;
             copy.Category = Category;
             copy.Year = Year;
             copy.Team = Team;
             copy.PersonalScoresOP = PersonalScoresOP;
+            copy.PersonalScoresPP = PersonalScoresPP;
             return copy;
         }
         public bool Contains(string text)

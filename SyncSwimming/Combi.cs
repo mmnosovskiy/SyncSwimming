@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace SyncSwimming
 {
     [Serializable]
-    public class Group : IComparable
+    public class Combi : IComparable
     {
-        public Participant[] GroupP { get; set; }
+        public List<Participant> GroupP { get; set; }
         public Participant[] Subs { get; set; }
         public int Position { get; set; }
         public Participant this[int index]
@@ -24,7 +24,7 @@ namespace SyncSwimming
                 GroupP[index] = value;
             }
         }
-        public Group(Participant[] group)
+        public Combi(List<Participant> group)
         {
             GroupP = group;
             foreach (Participant item in GroupP)
@@ -37,6 +37,7 @@ namespace SyncSwimming
             Year = Year.TrimEnd('\n');
             Category = Category.TrimEnd('\n');
             Team = group[0].Team;
+            GroupScores = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 1 }, new Scores() { Name = "И", Coef = 1 }, new Scores() { Name = "С", Coef = 1 } });
         }
         public string FIO { get; set; }
         public string Year { get; set; }
@@ -67,9 +68,10 @@ namespace SyncSwimming
 
         public int CompareTo(object obj)
         {
-            if (OverAllPP > ((Group)obj).OverAllPP) return -1;
-            else if (OverAllPP == ((Group)obj).OverAllPP) return 0;
+            if (OverAllPP > ((Combi)obj).OverAllPP) return -1;
+            else if (OverAllPP == ((Combi)obj).OverAllPP) return 0;
             else return 1;
         }
     }
 }
+

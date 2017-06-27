@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,23 +40,35 @@ namespace SyncSwimming
             scoresGrid.ItemsSource = duo.DuoScores;
             if (duo.IsCounted)
             {
-                A_T.Text = duo.DuoScores[0].ResultPP.ToString();
-                I_T.Text = duo.DuoScores[1].ResultPP.ToString();
-                T_T.Text = duo.DuoScores[2].ResultPP.ToString();
-                OverAllText.Text = "Итог: " + duo.OverAllPP;
+                A_T.Text = duo.DuoScores[0].ResultPP.ToString("F4");
+                I_T.Text = duo.DuoScores[1].ResultPP.ToString("F4");
+                T_T.Text = duo.DuoScores[2].ResultPP.ToString("F4");
+                OverAllText.Text = "Итог: " + duo.OverAllPP.ToString("F4");
             }
         }
         private void ButtonCount_Click(object sender, RoutedEventArgs e)
         {
-            A_T.Text = duo.DuoScores[0].ResultPP.ToString();
-            I_T.Text = duo.DuoScores[1].ResultPP.ToString();
-            T_T.Text = duo.DuoScores[2].ResultPP.ToString();
-            OverAllText.Text = "Итог: " + duo.OverAllPP;
+            A_T.Text = duo.DuoScores[0].ResultPP.ToString("F4");
+            I_T.Text = duo.DuoScores[1].ResultPP.ToString("F4");
+            T_T.Text = duo.DuoScores[2].ResultPP.ToString("F4");
+            OverAllText.Text = "Итог: " + duo.OverAllPP.ToString("F4");
             duo.IsCounted = true;
         }
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < duo.DuoScores.Count; i++)
+            {
+                for (int j = 0; j < duo.DuoScores[i].RefferiesPP.Length; j++)
+                {
+                    duo.DuoScores[i].RefferiesPP[j] = 0;
+                }
+            }
+            scoresGrid.ItemsSource = duo.DuoScores = new ObservableCollection<Scores>(duo.DuoScores);
         }
     }
 }

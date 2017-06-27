@@ -78,6 +78,11 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\Visual Studio 2017\Projects\Fantasy\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\Visual Studio 2017\Projects\Fantasy\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -98,6 +103,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoefWindow.xaml.cs">
+      <DependentUpon>CoefWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Combi.cs" />
+    <Compile Include="CombiWindow.xaml.cs">
+      <DependentUpon>CombiWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Comparer.cs" />
     <Compile Include="DataProcessor.cs" />
     <Compile Include="Duo.cs" />
     <Compile Include="DuoWindow.xaml.cs">
@@ -112,6 +125,9 @@
     </Compile>
     <Compile Include="Participant.cs" />
     <Compile Include="Scores.cs" />
+    <Compile Include="ScoresCombiWindow.xaml.cs">
+      <DependentUpon>ScoresCombiWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScoresDuoWindow.xaml.cs">
       <DependentUpon>ScoresDuoWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +144,17 @@
       <DependentUpon>ScoresTrophyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trophy.cs" />
+    <Compile Include="TrophyWindow.xaml.cs">
+      <DependentUpon>TrophyWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CoefWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CombiWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DuoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +179,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ScoresCombiWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScoresDuoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScoresTrophyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrophyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +254,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\left.png" />
+    <Resource Include="Images\right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

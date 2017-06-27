@@ -53,8 +53,8 @@ namespace SyncSwimming
 
                 if (NewEl)
                 {
-                    Participant d1 = new Participant();
-                    Participant d2 = new Participant();
+                    Participant d1 = new Participant("");
+                    Participant d2 = new Participant("");
                     d1.FIO = NewFio1.Text;
                     d2.FIO = NewFio2.Text;
                     d1.Category = NewCateg1.Text;

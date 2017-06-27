@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,25 +36,37 @@ namespace SyncSwimming
             scoresGrid.ItemsSource = participant.PersonalScoresPP;
             if (participant.IsCounted)
             {
-                A_T.Text = participant.PersonalScoresPP[0].ResultPP.ToString();
-                I_T.Text = participant.PersonalScoresPP[1].ResultPP.ToString();
-                T_T.Text = participant.PersonalScoresPP[2].ResultPP.ToString();
-                OverAllText.Text = "Итог: " + participant.OverAllPP;
+                A_T.Text = participant.PersonalScoresPP[0].ResultPP.ToString("F4");
+                I_T.Text = participant.PersonalScoresPP[1].ResultPP.ToString("F4");
+                T_T.Text = participant.PersonalScoresPP[2].ResultPP.ToString("F4");
+                OverAllText.Text = "Итог: " + participant.OverAllPP.ToString("F4");
             }
         }
 
         private void ButtonCount_Click(object sender, RoutedEventArgs e)
         {
-            A_T.Text = participant.PersonalScoresPP[0].ResultPP.ToString();
-            I_T.Text = participant.PersonalScoresPP[1].ResultPP.ToString();
-            T_T.Text = participant.PersonalScoresPP[2].ResultPP.ToString();
-            OverAllText.Text = "Итог: " + participant.OverAllPP;
+            A_T.Text = participant.PersonalScoresPP[0].ResultPP.ToString("F4");
+            I_T.Text = participant.PersonalScoresPP[1].ResultPP.ToString("F4");
+            T_T.Text = participant.PersonalScoresPP[2].ResultPP.ToString("F4");
+            OverAllText.Text = "Итог: " + participant.OverAllPP.ToString("F4");
             participant.IsCounted = true;
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < participant.PersonalScoresPP.Count; i++)
+            {
+                for (int j = 0; j < participant.PersonalScoresPP[i].RefferiesPP.Length; j++)
+                {
+                    participant.PersonalScoresPP[i].RefferiesPP[j] = 0;
+                }
+            }
+            scoresGrid.ItemsSource = participant.PersonalScoresPP = new ObservableCollection<Scores>(participant.PersonalScoresPP);
         }
     }
 }

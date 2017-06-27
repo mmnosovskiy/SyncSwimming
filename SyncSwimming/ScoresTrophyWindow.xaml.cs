@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,15 +29,15 @@ namespace SyncSwimming
         {
             InitializeComponent();
             tr = trophy;
-            Grid[] grids = new Grid[trophy.GroupP.Length];
-            for (int i = 0; i < trophy.GroupP.Length; i++)
+            Grid[] grids = new Grid[trophy.Members.Count];
+            for (int i = 0; i < trophy.Members.Count; i++)
             {
                 grids[i] = new Grid() { Height = 25 };
                 grids[i].ColumnDefinitions.Add(new ColumnDefinition());
                 grids[i].ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150) });
                 grids[i].ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(80) });
                 grids[i].ColumnDefinitions.Add(new ColumnDefinition());
-                TextBlock[] txt = new TextBlock[4] { new TextBlock() { Text = "ФИО: " + trophy.GroupP[i].FIO, Margin = new Thickness(5) }, new TextBlock() { Text = "Год рождения: " + trophy.GroupP[i].Year, Margin = new Thickness(5) }, new TextBlock() { Text = "Разряд: " + trophy.GroupP[i].Category, Margin = new Thickness(5) }, new TextBlock() { Text = "Команда: " + trophy.GroupP[i].Team, Margin = new Thickness(5) } };
+                TextBlock[] txt = new TextBlock[4] { new TextBlock() { Text = "ФИО: " + trophy.Members[i].FIO, Margin = new Thickness(5) }, new TextBlock() { Text = "Год рождения: " + trophy.Members[i].Year, Margin = new Thickness(5) }, new TextBlock() { Text = "Разряд: " + trophy.Members[i].Category, Margin = new Thickness(5) }, new TextBlock() { Text = "Команда: " + trophy.Members[i].Team, Margin = new Thickness(5) } };
                 Grid.SetColumn(txt[0], 0);
                 Grid.SetColumn(txt[1], 1);
                 Grid.SetColumn(txt[2], 2);
@@ -52,8 +53,8 @@ namespace SyncSwimming
             scoresGrid.ItemsSource = list;
             if (trophy.IsCounted)
             {
-                A_T.Text = trophy.TrophyScores.ResultT.ToString();
-                OverAllText.Text = "Итог: " + trophy.OverAllT;
+                A_T.Text = trophy.TrophyScores.ResultT.ToString("F4");
+                OverAllText.Text = "Итог: " + trophy.OverAllT.ToString("F4");
             }
             double sumH = 0;
             foreach (Grid item in stackTrophy.Children)
@@ -65,8 +66,8 @@ namespace SyncSwimming
 
         private void ButtonCount_Click(object sender, RoutedEventArgs e)
         {
-            A_T.Text = tr.TrophyScores.ResultT.ToString();
-            OverAllText.Text = "Итог: " + tr.OverAllT;
+            A_T.Text = tr.TrophyScores.ResultT.ToString("F4");
+            OverAllText.Text = "Итог: " + tr.OverAllT.ToString("F4");
             tr.IsCounted = true;
         }
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
@@ -74,9 +75,15 @@ namespace SyncSwimming
             Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
-            
+            for (int i = 0; i < tr.TrophyScores.RefferiesT.Length; i++)
+            {
+                tr.TrophyScores.RefferiesT[i] = 0;
+            }
+            List<Scores> list = new List<Scores>();
+            list.Add(tr.TrophyScores = new Scores() { Name = "А" });
+            scoresGrid.ItemsSource = list;
         }
     }
 }

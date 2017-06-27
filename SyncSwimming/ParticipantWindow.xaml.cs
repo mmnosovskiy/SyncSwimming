@@ -26,7 +26,7 @@ namespace SyncSwimming
         public ParticipantWindow()
         {
             InitializeComponent();
-            newParticipant = new Participant();
+            newParticipant = new Participant("");
             NewEl = true;
         }
         public ParticipantWindow(Participant element, int pos)

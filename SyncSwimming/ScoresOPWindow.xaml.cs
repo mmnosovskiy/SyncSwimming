@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SyncSwimming
 {
@@ -24,9 +13,31 @@ namespace SyncSwimming
         {
             InitializeComponent();
         }
-        public ScoresOPWindow(Participant par)
+        public ScoresOPWindow(Participant par, string name)
         {
             InitializeComponent();
+
+            switch (name)
+            {
+                case "OP8":
+                    F1.Text = DataProcessor.F1_8.ToString();
+                    F2.Text = DataProcessor.F2_8.ToString();
+                    F3.Text = DataProcessor.F3_8.ToString();
+                    F4.Text = DataProcessor.F4_8.ToString();
+                    break;
+                case "OP12":
+                    F1.Text = DataProcessor.F1_12.ToString();
+                    F2.Text = DataProcessor.F2_12.ToString();
+                    F3.Text = DataProcessor.F3_12.ToString();
+                    F4.Text = DataProcessor.F4_12.ToString();
+                    break;
+                case "OP13_15":
+                    F1.Text = DataProcessor.F1_13_15.ToString();
+                    F2.Text = DataProcessor.F2_13_15.ToString();
+                    F3.Text = DataProcessor.F3_13_15.ToString();
+                    F4.Text = DataProcessor.F4_13_15.ToString();
+                    break;
+            }
             participant = par;
             Fio.Text += " " + participant.FIO;
             BirthYear.Text += " " + participant.Year;
@@ -35,11 +46,11 @@ namespace SyncSwimming
             scoresGrid.ItemsSource = participant.PersonalScoresOP;
             if (participant.IsCounted)
             {
-                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString();
-                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString();
-                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString();
-                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString();
-                OverAllText.Text = "Итог: " + participant.OverAllOP;
+                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString("F4");
+                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString("F4");
+                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString("F4");
+                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString("F4");
+                OverAllText.Text = "Итог: " + participant.OverAllOP.ToString("F4");
             }
         }
 
@@ -52,11 +63,11 @@ namespace SyncSwimming
                 {
                     participant.PersonalScoresOP[i].Coef = f[i];
                 }
-                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString();
-                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString();
-                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString();
-                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString();
-                OverAllText.Text = "Итог: " + participant.OverAllOP;
+                F1_T.Text = participant.PersonalScoresOP[0].ResultOP.ToString("F4");
+                F2_T.Text = participant.PersonalScoresOP[1].ResultOP.ToString("F4");
+                F3_T.Text = participant.PersonalScoresOP[2].ResultOP.ToString("F4");
+                F4_T.Text = participant.PersonalScoresOP[3].ResultOP.ToString("F4");
+                OverAllText.Text = "Итог: " + participant.OverAllOP.ToString("F4");
                 participant.IsCounted = true;
             }
             else
@@ -68,6 +79,18 @@ namespace SyncSwimming
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < participant.PersonalScoresOP.Count; i++)
+            {
+                for (int j = 0; j < participant.PersonalScoresOP[i].RefferiesOP.Length; j++)
+                {
+                    participant.PersonalScoresOP[i].RefferiesOP[j] = 0;
+                }
+            }
+            scoresGrid.ItemsSource = participant.PersonalScoresOP = new ObservableCollection<Scores>(participant.PersonalScoresOP);
         }
     }
 }

@@ -21,13 +21,14 @@ namespace SyncSwimming
             Category = Duo1.Category + "\n" + Duo2.Category;
             Team = Duo1.Team;
         }
+        public int Position { get; set; }
         public string FIO { get; set; }
         public string Year { get; set; }
         public string Category { get; set; }
         public string Team { get; set; }
         public bool IsCounted { get; set; }
 
-        public ObservableCollection<Scores> DuoScores = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 0.4 }, new Scores() { Name = "И", Coef = 0.3 }, new Scores() { Name = "С", Coef = 0.3 } });
+        public ObservableCollection<Scores> DuoScores = new ObservableCollection<Scores>(new Scores[3] { new Scores() { Name = "А", Coef = 1 }, new Scores() { Name = "И", Coef = 1 }, new Scores() { Name = "С", Coef = 1 } });
         public double OverAllPP
         {
             get

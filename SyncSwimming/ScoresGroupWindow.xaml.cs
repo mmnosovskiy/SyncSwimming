@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,23 +65,35 @@ namespace SyncSwimming
             scoresGrid.ItemsSource = group.GroupScores;
             if (group.IsCounted)
             {
-                A_T.Text = group.GroupScores[0].ResultPP.ToString();
-                I_T.Text = group.GroupScores[1].ResultPP.ToString();
-                T_T.Text = group.GroupScores[2].ResultPP.ToString();
-                OverAllText.Text = "Итог: " + group.OverAllPP;
+                A_T.Text = group.GroupScores[0].ResultPP.ToString("F4");
+                I_T.Text = group.GroupScores[1].ResultPP.ToString("F4");
+                T_T.Text = group.GroupScores[2].ResultPP.ToString("F4");
+                OverAllText.Text = "Итог: " + group.OverAllPP.ToString("F4");
             }
         }
         private void ButtonCount_Click(object sender, RoutedEventArgs e)
         {
-            A_T.Text = group.GroupScores[0].ResultPP.ToString();
-            I_T.Text = group.GroupScores[1].ResultPP.ToString();
-            T_T.Text = group.GroupScores[2].ResultPP.ToString();
-            OverAllText.Text = "Итог: " + group.OverAllPP;
+            A_T.Text = group.GroupScores[0].ResultPP.ToString("F4");
+            I_T.Text = group.GroupScores[1].ResultPP.ToString("F4");
+            T_T.Text = group.GroupScores[2].ResultPP.ToString("F4");
+            OverAllText.Text = "Итог: " + group.OverAllPP.ToString("F4");
             group.IsCounted = true;
         }
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < group.GroupScores.Count; i++)
+            {
+                for (int j = 0; j < group.GroupScores[i].RefferiesPP.Length; j++)
+                {
+                    group.GroupScores[i].RefferiesPP[j] = 0;
+                }
+            }
+            scoresGrid.ItemsSource = group.GroupScores = new ObservableCollection<Scores>(group.GroupScores);
         }
     }
 }

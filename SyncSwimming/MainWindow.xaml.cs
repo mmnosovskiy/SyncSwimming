@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SyncSwimming
 {
@@ -49,9 +40,19 @@ namespace SyncSwimming
         {
             if (dataGrid.SelectedItem != null && prBar.Visibility == Visibility.Hidden) //Выбран ли элемент?
             {
-                if (DataProcessor.Current == DataProcessor.listOP8 || DataProcessor.Current == DataProcessor.listOP12 || DataProcessor.Current == DataProcessor.listOP13_15)
+                if (DataProcessor.Current == DataProcessor.listOP8)
                 {
-                    ScoresOPWindow scWindow = new ScoresOPWindow((Participant)dataGrid.SelectedItem);
+                    ScoresOPWindow scWindow = new ScoresOPWindow((Participant)dataGrid.SelectedItem, "OP8");
+                    scWindow.ShowDialog();
+                }
+                else if (DataProcessor.Current == DataProcessor.listOP12)
+                {
+                    ScoresOPWindow scWindow = new ScoresOPWindow((Participant)dataGrid.SelectedItem, "OP12");
+                    scWindow.ShowDialog();
+                }
+                else if (DataProcessor.Current == DataProcessor.listOP13_15)
+                {
+                    ScoresOPWindow scWindow = new ScoresOPWindow((Participant)dataGrid.SelectedItem, "OP13_15");
                     scWindow.ShowDialog();
                 }
                 else if (DataProcessor.Current == DataProcessor.listSolo8 || DataProcessor.Current == DataProcessor.listSolo12 || DataProcessor.Current == DataProcessor.listSolo13_15)
@@ -64,9 +65,14 @@ namespace SyncSwimming
                     ScoresDuoWindow scWindow = new ScoresDuoWindow((Duo)dataGrid.SelectedItem);
                     scWindow.ShowDialog();
                 }
-                else if (DataProcessor.Current == DataProcessor.listGroup || DataProcessor.Current == DataProcessor.listCombi)
+                else if (DataProcessor.Current == DataProcessor.listGroup)
                 {
                     ScoresGroupWindow scWindow = new ScoresGroupWindow((Group)dataGrid.SelectedItem);
+                    scWindow.ShowDialog();
+                }
+                else if (DataProcessor.Current == DataProcessor.listCombi)
+                {
+                    ScoresCombiWindow scWindow = new ScoresCombiWindow((Combi)dataGrid.SelectedItem);
                     scWindow.ShowDialog();
                 }
                 else if (DataProcessor.Current == DataProcessor.listTrophy)
@@ -87,8 +93,11 @@ namespace SyncSwimming
                         ((ObservableCollection<Participant>)DataProcessor.Current).Remove((Participant)dataGrid.SelectedItem);
                     else if (DataProcessor.Current == DataProcessor.listDuo8 || DataProcessor.Current == DataProcessor.listDuo12 || DataProcessor.Current == DataProcessor.listDuo13_15)
                         ((ObservableCollection<Duo>)DataProcessor.Current).Remove((Duo)dataGrid.SelectedItem);
-                    else if (DataProcessor.Current == DataProcessor.listGroup || DataProcessor.Current == DataProcessor.listCombi)
+                    else if (DataProcessor.Current == DataProcessor.listGroup)
                         ((ObservableCollection<Group>)DataProcessor.Current).Remove((Group)dataGrid.SelectedItem);
+                    else if (DataProcessor.Current == DataProcessor.listCombi)
+                        ((ObservableCollection<Combi>)DataProcessor.Current).Remove((Combi)dataGrid.SelectedItem);
+                    else ((ObservableCollection<Trophy>)DataProcessor.Current).Remove((Trophy)dataGrid.SelectedItem);
                 }
             }
             else
@@ -109,9 +118,19 @@ namespace SyncSwimming
                 DuoWindow newWin = new DuoWindow();
                 newWin.ShowDialog();
             }
-            else if (DataProcessor.Current == DataProcessor.listGroup || DataProcessor.Current == DataProcessor.listCombi)
+            else if (DataProcessor.Current == DataProcessor.listGroup)
             {
                 GroupWindow newWin = new GroupWindow();
+                newWin.ShowDialog();
+            }
+            else if (DataProcessor.Current == DataProcessor.listCombi)
+            {
+                CombiWindow newWin = new CombiWindow();
+                newWin.ShowDialog();
+            }
+            else if (DataProcessor.Current == DataProcessor.listTrophy)
+            {
+                TrophyWindow newWin = new TrophyWindow();
                 newWin.ShowDialog();
             }
         }
@@ -130,9 +149,19 @@ namespace SyncSwimming
                     DuoWindow newWin = new DuoWindow((Duo)dataGrid.SelectedItem, dataGrid.SelectedIndex);
                     newWin.ShowDialog();
                 }
-                else if (DataProcessor.Current == DataProcessor.listGroup || DataProcessor.Current == DataProcessor.listCombi)
+                else if (DataProcessor.Current == DataProcessor.listGroup)
                 {
                     GroupWindow scWindow = new GroupWindow((Group)dataGrid.SelectedItem, dataGrid.SelectedIndex);
+                    scWindow.ShowDialog();
+                }
+                else if (DataProcessor.Current == DataProcessor.listCombi)
+                {
+                    CombiWindow scWindow = new CombiWindow((Combi)dataGrid.SelectedItem, dataGrid.SelectedIndex);
+                    scWindow.ShowDialog();
+                }
+                else if (DataProcessor.Current == DataProcessor.listTrophy)
+                {
+                    TrophyWindow scWindow = new TrophyWindow((Trophy)dataGrid.SelectedItem, dataGrid.SelectedIndex);
                     scWindow.ShowDialog();
                 }
             }
@@ -205,23 +234,29 @@ namespace SyncSwimming
             win.EditButton.IsEnabled = false;
             win.ButtonSort.IsEnabled = false;
             win.ExportButton.IsEnabled = false;
-            if (DataProcessor.Current == DataProcessor.listOP8) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "ОП 8 и м");
-            else if (DataProcessor.Current == DataProcessor.listOP12) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "ОП 12 и м");
-            else if (DataProcessor.Current == DataProcessor.listOP13_15) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "ОП 13-15");
-            else if (DataProcessor.Current == DataProcessor.listSolo8) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "Соло 8 и м");
-            else if (DataProcessor.Current == DataProcessor.listSolo12) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "Соло 12 и м");
-            else if (DataProcessor.Current == DataProcessor.listSolo13_15) await DataProcessor.ExportToExcel((ObservableCollection<Participant>)DataProcessor.Current, "Соло 13-15");
-            else if (DataProcessor.Current == DataProcessor.listDuo8) await DataProcessor.ExportToExcel((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 8 и м");
-            else if (DataProcessor.Current == DataProcessor.listDuo12) await DataProcessor.ExportToExcel((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 12 и м");
-            else if (DataProcessor.Current == DataProcessor.listDuo13_15) await DataProcessor.ExportToExcel((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 13-15");
-            else if (DataProcessor.Current == DataProcessor.listGroup) await DataProcessor.ExportToExcel((ObservableCollection<Group>)DataProcessor.Current, "Группа");
-            else if (DataProcessor.Current == DataProcessor.listCombi) await DataProcessor.ExportToExcel((ObservableCollection<Group>)DataProcessor.Current, "Комби");
-            else if (DataProcessor.Current == DataProcessor.listTrophy) await DataProcessor.ExportToExcel((ObservableCollection<Trophy>)DataProcessor.Current, "Трофи");
+            win.ExportAllButton.IsEnabled = false;
+            win.ExportWordButton.IsEnabled = false;
+            win.ButtonCoef.IsEnabled = false;
+            if (DataProcessor.Current == DataProcessor.listOP8) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "ОП 8 и м");
+            else if (DataProcessor.Current == DataProcessor.listOP12) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "ОП 12 и м");
+            else if (DataProcessor.Current == DataProcessor.listOP13_15) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "ОП 13-15");
+            else if (DataProcessor.Current == DataProcessor.listSolo8) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "Соло 8 и м");
+            else if (DataProcessor.Current == DataProcessor.listSolo12) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "Соло 12 и м");
+            else if (DataProcessor.Current == DataProcessor.listSolo13_15) await DataProcessor.ExportToExcelA((ObservableCollection<Participant>)DataProcessor.Current, "Соло 13-15");
+            else if (DataProcessor.Current == DataProcessor.listDuo8) await DataProcessor.ExportToExcelA((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 8 и м");
+            else if (DataProcessor.Current == DataProcessor.listDuo12) await DataProcessor.ExportToExcelA((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 12 и м");
+            else if (DataProcessor.Current == DataProcessor.listDuo13_15) await DataProcessor.ExportToExcelA((ObservableCollection<Duo>)DataProcessor.Current, "Дуэт 13-15");
+            else if (DataProcessor.Current == DataProcessor.listGroup) await DataProcessor.ExportToExcelA((ObservableCollection<Group>)DataProcessor.Current, "Группа");
+            else if (DataProcessor.Current == DataProcessor.listCombi) await DataProcessor.ExportToExcelA((ObservableCollection<Combi>)DataProcessor.Current, "Комби");
+            else if (DataProcessor.Current == DataProcessor.listTrophy) await DataProcessor.ExportToExcelA((ObservableCollection<Trophy>)DataProcessor.Current, "Трофи");
             win.AddButton.IsEnabled = true;
             win.DeleteButton.IsEnabled = true;
             win.EditButton.IsEnabled = true;
             win.ButtonSort.IsEnabled = true;
             win.ExportButton.IsEnabled = true;
+            win.ExportAllButton.IsEnabled = true;
+            win.ExportWordButton.IsEnabled = true;
+            win.ButtonCoef.IsEnabled = true;
             win.prBar.Visibility = Visibility.Hidden;
         }
 
@@ -235,8 +270,14 @@ namespace SyncSwimming
         {
             pressedButton.IsEnabled = true;
             Button current = (Button)sender;
-            if (current.Name == "Trophy") EditButton.IsEnabled = false;
-            else EditButton.IsEnabled = true;
+            if (current.Name == "OP8" || current.Name == "OP12" || current.Name == "OP13_15")
+            {
+                ButtonCoef.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonCoef.Visibility = Visibility.Hidden;
+            }
             current.IsEnabled = false;
             pressedButton = current;
             switch (current.Name)
@@ -294,7 +335,7 @@ namespace SyncSwimming
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            DataProcessor.excelApp.Visible = true;
+            if (DataProcessor.IsExport) DataProcessor.excelApp.Visible = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -323,72 +364,72 @@ namespace SyncSwimming
            
             Participant[] arr = new Participant[DataProcessor.listOP8.Count];
             DataProcessor.listOP8.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListOP8) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listOP8 = new ObservableCollection<Participant>(arr);
             
            
             arr = new Participant[DataProcessor.listOP12.Count];
             DataProcessor.listOP12.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListOP12) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listOP12 = new ObservableCollection<Participant>(arr);
            
             arr = new Participant[DataProcessor.listOP13_15.Count];
             DataProcessor.listOP13_15.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListOP13_15) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listOP13_15 = new ObservableCollection<Participant>(arr);
             
             
             arr = new Participant[DataProcessor.listSolo8.Count];
             DataProcessor.listSolo8.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListSolo8) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listSolo8 = new ObservableCollection<Participant>(arr);
             
             
             arr = new Participant[DataProcessor.listSolo12.Count];
             DataProcessor.listSolo12.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListSolo12) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listSolo12 = new ObservableCollection<Participant>(arr);
    
             
             arr = new Participant[DataProcessor.listSolo13_15.Count];
             DataProcessor.listSolo13_15.CopyTo(arr, 0);
-            Array.Sort(arr);
+            if (!DataProcessor.IsSortedListSolo13_15) Array.Sort(arr, new ComparerParticipant());
             DataProcessor.listSolo13_15 = new ObservableCollection<Participant>(arr);
            
             
             Duo[] arr1 = new Duo[DataProcessor.listDuo8.Count];
             DataProcessor.listDuo8.CopyTo(arr1, 0);
-            Array.Sort(arr1);
+            if (!DataProcessor.IsSortedListDuo8) Array.Sort(arr1, new ComparerDuo());
             DataProcessor.listDuo8 = new ObservableCollection<Duo>(arr1);
             
            
             arr1 = new Duo[DataProcessor.listDuo12.Count];
             DataProcessor.listDuo12.CopyTo(arr1, 0);
-            Array.Sort(arr1);
+            if (!DataProcessor.IsSortedListDuo12) Array.Sort(arr1, new ComparerDuo());
             DataProcessor.listDuo12 = new ObservableCollection<Duo>(arr1);
             
             
             arr1 = new Duo[DataProcessor.listDuo13_15.Count];
             DataProcessor.listDuo13_15.CopyTo(arr1, 0);
-            Array.Sort(arr1);
+            if (!DataProcessor.IsSortedListDuo13_15) Array.Sort(arr1, new ComparerDuo());
             DataProcessor.listDuo13_15 = new ObservableCollection<Duo>(arr1);
            
             
             Group[] arr2 = new Group[DataProcessor.listGroup.Count];
             DataProcessor.listGroup.CopyTo(arr2, 0);
-            Array.Sort(arr2);
+            if (!DataProcessor.IsSortedListGroup) Array.Sort(arr2, new ComparerGroup());
             DataProcessor.listGroup = new ObservableCollection<Group>(arr2);
             
             
-            arr2 = new Group[DataProcessor.listCombi.Count];
-            DataProcessor.listCombi.CopyTo(arr2, 0);
-            Array.Sort(arr2);
-            DataProcessor.listCombi = new ObservableCollection<Group>(arr2);
+            Combi[] arr4 = new Combi[DataProcessor.listCombi.Count];
+            DataProcessor.listCombi.CopyTo(arr4, 0);
+            if (!DataProcessor.IsSortedListCombi) Array.Sort(arr4, new ComparerCombi());
+            DataProcessor.listCombi = new ObservableCollection<Combi>(arr4);
             
             
             Trophy[] arr3 = new Trophy[DataProcessor.listTrophy.Count];
             DataProcessor.listTrophy.CopyTo(arr3, 0);
-            Array.Sort(arr3);
+            if (!DataProcessor.IsSortedListTrophy) Array.Sort(arr3, new ComparerTrophy());
             DataProcessor.listTrophy = new ObservableCollection<Trophy>(arr3);
             
             
@@ -405,6 +446,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listOP8;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListOP8 = true;
             }
             if (DataProcessor.Current == DataProcessor.listOP12)
             {
@@ -415,6 +457,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listOP12;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListOP12 = true;
             }
             if (DataProcessor.Current == DataProcessor.listOP13_15)
             {
@@ -425,6 +468,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listOP13_15;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListOP13_15 = true;
             }
             if (DataProcessor.Current == DataProcessor.listSolo8)
             {
@@ -435,6 +479,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listSolo8;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListSolo8 = true;
             }
             if (DataProcessor.Current == DataProcessor.listSolo12)
             {
@@ -445,6 +490,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listSolo12;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListSolo12 = true;
             }
             if (DataProcessor.Current == DataProcessor.listSolo13_15)
             {
@@ -455,6 +501,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listSolo13_15;
                 dataGrid.ItemsSource = new ObservableCollection<Participant>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListSolo13_15 = true;
             }
             if (DataProcessor.Current == DataProcessor.listDuo8)
             {
@@ -465,6 +512,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listDuo8;
                 dataGrid.ItemsSource = new ObservableCollection<Duo>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListDuo8 = true;
             }
             if (DataProcessor.Current == DataProcessor.listDuo12)
             {
@@ -475,6 +523,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listDuo12;
                 dataGrid.ItemsSource = new ObservableCollection<Duo>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListDuo12 = true;
             }
             if (DataProcessor.Current == DataProcessor.listDuo13_15)
             {
@@ -485,6 +534,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listDuo13_15;
                 dataGrid.ItemsSource = new ObservableCollection<Duo>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListDuo13_15 = true;
             }
             if (DataProcessor.Current == DataProcessor.listGroup)
             {
@@ -495,16 +545,18 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listGroup;
                 dataGrid.ItemsSource = new ObservableCollection<Group>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListGroup = true;
             }
             if (DataProcessor.Current == DataProcessor.listCombi)
             {
-                Group[] arr = new Group[DataProcessor.Current.Count];
+                Combi[] arr = new Combi[DataProcessor.Current.Count];
                 DataProcessor.Current.CopyTo(arr, 0);
                 Array.Sort(arr);
-                DataProcessor.listCombi = new ObservableCollection<Group>(arr);
+                DataProcessor.listCombi = new ObservableCollection<Combi>(arr);
                 DataProcessor.Current = DataProcessor.listCombi;
-                dataGrid.ItemsSource = new ObservableCollection<Group>();
+                dataGrid.ItemsSource = new ObservableCollection<Combi>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListCombi = true;
             }
             if (DataProcessor.Current == DataProcessor.listTrophy)
             { 
@@ -515,6 +567,7 @@ namespace SyncSwimming
                 DataProcessor.Current = DataProcessor.listTrophy;
                 dataGrid.ItemsSource = new ObservableCollection<Trophy>();
                 dataGrid.ItemsSource = DataProcessor.Current;
+                DataProcessor.IsSortedListTrophy = true;
             }
         }
 
@@ -531,12 +584,16 @@ namespace SyncSwimming
             win.EditButton.IsEnabled = false;
             win.ButtonSort.IsEnabled = false;
             win.ExportButton.IsEnabled = false;
+            win.ExportAllButton.IsEnabled = false;
+            win.ExportWordButton.IsEnabled = false;
             await ExcelAll();
             win.AddButton.IsEnabled = true;
             win.DeleteButton.IsEnabled = true;
             win.EditButton.IsEnabled = true;
             win.ButtonSort.IsEnabled = true;
             win.ExportButton.IsEnabled = true;
+            win.ExportAllButton.IsEnabled = true;
+            win.ExportWordButton.IsEnabled = true;
             win.prBar.Visibility = Visibility.Hidden;
         }
 
@@ -558,5 +615,53 @@ namespace SyncSwimming
             });
         }
 
+        private void ButtonDraw_Click(object sender, RoutedEventArgs e)
+        {
+            DataProcessor.MakeMixList((ObservableCollection<Participant>)DataProcessor.Current);
+        }
+
+        private void ButtonExportWord_Click(object sender, RoutedEventArgs e)
+        {
+            if (prBar.Visibility == Visibility.Hidden) ExportWordAsync(this);
+            else MessageBox.Show("Идет экспорт данных!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        static async void ExportWordAsync(MainWindow win)
+        {
+            win.prBar.Visibility = Visibility.Visible;
+            win.AddButton.IsEnabled = false;
+            win.DeleteButton.IsEnabled = false;
+            win.EditButton.IsEnabled = false;
+            win.ButtonSort.IsEnabled = false;
+            win.ExportButton.IsEnabled = false;
+            win.ExportAllButton.IsEnabled = false;
+            win.ExportWordButton.IsEnabled = false;
+            if (DataProcessor.Current == DataProcessor.listOP8) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listOP12) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listOP13_15) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listSolo8) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listSolo12) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listSolo13_15) await DataProcessor.WordExport((ObservableCollection<Participant>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listDuo8) await DataProcessor.WordExport((ObservableCollection<Duo>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listDuo12) await DataProcessor.WordExport((ObservableCollection<Duo>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listDuo13_15) await DataProcessor.WordExport((ObservableCollection<Duo>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listGroup) await DataProcessor.WordExport((ObservableCollection<Group>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listCombi) await DataProcessor.WordExport((ObservableCollection<Combi>)DataProcessor.Current);
+            else if (DataProcessor.Current == DataProcessor.listTrophy) await DataProcessor.WordExport((ObservableCollection<Trophy>)DataProcessor.Current);
+            win.AddButton.IsEnabled = true;
+            win.DeleteButton.IsEnabled = true;
+            win.EditButton.IsEnabled = true;
+            win.ButtonSort.IsEnabled = true;
+            win.ExportButton.IsEnabled = true;
+            win.ExportAllButton.IsEnabled = true;
+            win.ExportWordButton.IsEnabled = true;
+            win.prBar.Visibility = Visibility.Hidden;
+        }
+
+        private void ButtonCoef_Click(object sender, RoutedEventArgs e)
+        {
+            CoefWindow cfWindow = new CoefWindow(pressedButton.Name);
+            cfWindow.ShowDialog();
+        }
     }
 }

@@ -66,14 +66,14 @@ namespace SyncSwimming
 
                 if (NewEl)
                 {
-                    Participant p1 = new Participant();
-                    Participant p2 = new Participant();
-                    Participant p3 = new Participant();
-                    Participant p4 = new Participant();
-                    Participant p5 = new Participant();
-                    Participant p6 = new Participant();
-                    Participant p7 = new Participant();
-                    Participant p8 = new Participant();
+                    Participant p1 = new Participant("");
+                    Participant p2 = new Participant("");
+                    Participant p3 = new Participant("");
+                    Participant p4 = new Participant("");
+                    Participant p5 = new Participant("");
+                    Participant p6 = new Participant("");
+                    Participant p7 = new Participant("");
+                    Participant p8 = new Participant("");
                     p1.FIO = NewFio1.Text;
                     p2.FIO = NewFio2.Text;
                     p3.FIO = NewFio3.Text;
@@ -111,14 +111,14 @@ namespace SyncSwimming
                 }
                 else
                 {
-                    Participant p1 = new Participant();
-                    Participant p2 = new Participant();
-                    Participant p3 = new Participant();
-                    Participant p4 = new Participant();
-                    Participant p5 = new Participant();
-                    Participant p6 = new Participant();
-                    Participant p7 = new Participant();
-                    Participant p8 = new Participant();
+                    Participant p1 = new Participant("");
+                    Participant p2 = new Participant("");
+                    Participant p3 = new Participant("");
+                    Participant p4 = new Participant("");
+                    Participant p5 = new Participant("");
+                    Participant p6 = new Participant("");
+                    Participant p7 = new Participant("");
+                    Participant p8 = new Participant("");
                     p1.FIO = NewFio1.Text;
                     p2.FIO = NewFio2.Text;
                     p3.FIO = NewFio3.Text;
